@@ -1,0 +1,523 @@
+<html>
+  <head>
+      
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="./Assets/js/script.js"></script>
+    
+    <link rel="stylesheet" href="./Assets/css/style.css">
+  </head>
+  <body>
+
+    <a-scene  physics="gravity:0" shadow="autoUpdate: false castShadow: true type:pcsoft">
+            <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
+            <a-entity light="type: directional;
+                       castShadow: true;
+                       intensity: 0.01;
+                       shadowCameraVisible: true;" position="1.235 1 1"></a-entity>
+        <a-entity progressive-controls></a-entity>
+      <a-assets>
+        <a-asset-item id="floor-obj" src="./Assets/obj/floor.obj"></a-asset-item>
+        <a-asset-item id="floor-mtl" src="./Assets/obj/floor.mtl"></a-asset-item>
+        <a-asset-item  id="walls-obj"  src="./Assets/obj/walls.obj"></a-asset-item>
+        <a-asset-item  id="walls-mtl"  src="./Assets/obj/walls.mtl"></a-asset-item>
+        <a-asset-item  id="celling-obj"  src="./Assets/obj/celling.obj"></a-asset-item>
+        <a-asset-item  id="celling-mtl"  src="./Assets/obj/celling.mtl"></a-asset-item>
+        <a-asset-item  id="door-obj"  src="./Assets/obj/door.obj"></a-asset-item>
+        <a-asset-item  id="door-mtl"  src="./Assets/obj/door.mtl"></a-asset-item>
+        <a-asset-item  id="w1-obj"  src="./Assets/obj/w1.obj"></a-asset-item>
+        <a-asset-item  id="w1-mtl"  src="./Assets/obj/w1.mtl"></a-asset-item>
+        <a-asset-item  id="w2-obj"  src="./Assets/obj/w2.obj"></a-asset-item>
+        <a-asset-item  id="w2-mtl"  src="./Assets/obj/w2.mtl"></a-asset-item>
+        <a-asset-item  id="w3-obj"  src="./Assets/obj/w3.obj"></a-asset-item>
+        <a-asset-item  id="w3-mtl"  src="./Assets/obj/w3.mtl"></a-asset-item>
+        <a-asset-item  id="sofa-obj"  src="./Assets/obj/sofa.obj"></a-asset-item>
+        <a-asset-item  id="sofa-mtl"  src="./Assets/obj/sofa.mtl"></a-asset-item>
+        <a-asset-item   id="chair-obj"  src="./Assets/obj/chair.obj"></a-asset-item>
+        <a-asset-item  id="chair-mtl"  src="./Assets/obj/chair.mtl"></a-asset-item>
+        <a-asset-item  id="table-obj"  src="./Assets/obj/table.obj"></a-asset-item>
+        <a-asset-item  id="table-mtl"  src="./Assets/obj/table.mtl"></a-asset-item>
+        <a-asset-item  id="sofa1-obj"  src="./Assets/obj/sofa-1.obj"></a-asset-item>
+        <a-asset-item  id="sofa1-mtl"  src="./Assets/obj/sofa.mtl"></a-asset-item>
+        <a-asset-item  id="album-obj"  src="./Assets/obj/album.obj"></a-asset-item>
+        <a-asset-item  id="album-mtl"  src="./Assets/obj/album.mtl"></a-asset-item>
+        <a-asset-item id="footer-obj" src="./Assets/obj/footer.obj"></a-asset-item>
+      </a-assets>
+
+      <a-obj-model log  static-body id="ground" src="#floor-obj" mtl="#floor-mtl" shadow=" receive:true;"></a-obj-model>
+      <a-obj-model src="#walls-obj" mtl="#walls-mtl" shadow="cast:true; receive:true;"></a-obj-model>
+      <a-obj-model src="#celling-obj" mtl="#celling-mtl" shadow=" receive:true;"></a-obj-model>
+      <a-obj-model src="#door-obj" mtl="#door-mtl" shadow="cast:true; receive:true;"></a-obj-model>
+      <a-obj-model src="#w1-obj" mtl="#w1-mtl" shadow="cast:true; receive:true;"></a-obj-model>
+      <a-obj-model src="#w2-obj" mtl="#w2-mtl" shadow="cast:true; receive:true;"></a-obj-model>
+      <a-obj-model src="#w3-obj" mtl="#w3-mtl" shadow="cast:true; receive:true;"></a-obj-model>
+      <a-entity light="type:directional; castShadow:true; intensity:0.3; shadowCameraBias:0.01; shadowCameraVisible:true; shadowMapWidth:1024; shadowMapHeight:1024;" position="1.235 1 1"></a-entity>
+      <a-entity light="type: ambient; intensity: 0.2;"></a-entity>
+
+
+
+      <a-entity id='cameraWrappers1' position="0 0 0" rotation="0 0 0">
+        <a-camera rotation-reader position="0 1.6 0" id="cameraPositions1">
+            <!-- <a-cursor id="cam2cursor" color="#f000f0" material="" raycaster="" cursor="" geometry="" position="0 0 -1" scale="1.5 1.5 1.5"></a-cursor> -->
+        </a-camera>
+      </a-entity>
+
+      <a-plane
+      id="discontinuous-plane1"
+      foo
+      position="-2.2 2.805 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane2"
+      foo
+      position="-2.2 2.7 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane3"
+      foo
+      position="-2.2 2.595 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane4"
+      foo
+      position="-2.2 2.49 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane5"
+      foo
+      position="-2.2 2.385 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane6"
+      foo
+      position="-2.2 2.28 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane7"
+      foo
+      position="-2.2 2.175 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane8"
+      foo
+      position="-2.2 2.07 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane9"
+      foo
+      position="-2.2 1.965 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane10"
+      foo
+      position="-2.2 1.86 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane11"
+      foo
+      position="-2.2 1.755 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane12"
+      foo
+      position="-2.2 1.65 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane13"
+      foo
+      position="-2.2 1.545 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane14"
+      foo
+      position="-2.2 1.44 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane15"
+      foo
+      position="-2.2 1.335 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane16"
+      foo
+      position="-2.2 1.23 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane17"
+      foo
+      position="-2.2 1.125 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane18"
+      foo
+      position="-2.2 1.02 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane19"
+      foo
+      position="-2.2 0.915 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane20"
+      foo
+      position="-2.2 0.81 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane21"
+      foo
+      position="-2.2 0.705 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane22"
+      foo
+      position="-2.2 0.6 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane23"
+      foo
+      position="-2.2 0.495 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane24"
+      foo
+      position="-2.2 0.39 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane25"
+      foo
+      position="-2.2 0.285 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+  <a-plane
+      id="discontinuous-plane26"
+      foo
+      position="-2.2 0.18 -1.05"
+      width="1.9"
+      rotation="-60 90 0"
+      height="0.1"
+      src="./Assets/Textures/Blinder_1.jpg"
+      animation="property: rotation; to: 0 90 0; dur: 3500; startEvents: startAnimation"
+      animation__2="property: rotation; to: -60 90 0; dur: 3500; startEvents: endAnimation"
+  ></a-plane>
+</a-obj-model>
+<a-obj-model src="#w3-obj" mtl="#w3-mtl">
+  <a-plane
+    id="curtain-plane1"
+    position="-1.202 3 1.35"
+    rotation="0 90 0"
+    width="0.7"
+    height="6"
+    src="./Assets/Textures/Shader1.jpg"
+    opacity="0"
+    foo
+    animation="property: opacity; to: 1; dur: 2500; startEvents: startAnimation"
+    animation__2="property: opacity; to: 0; dur: 3400; startEvents: endAnimation"
+  ></a-plane>
+  <a-cone
+      id="curtain-cone1"
+      position="-1.202 0 1.6"
+      radius-bottom="0.3"
+      src="./Assets/Textures/Shader1.jpg"
+      height="3"
+      animation="property: position; to: -1.202 0 0.85; dur: 3400; startEvents: startAnimation"
+      animation__2="property: theta-length; from: 360; to: 0; dur: 2500; startEvents: startAnimation"
+      animation__3="property: position; to: -1.202 0 1.6; dur: 3400; startEvents: endAnimation"
+      animation__4="property: theta-length; to: 360; dur: 1000; startEvents: endAnimation"
+      
+  ></a-cone>
+  <a-cone
+      id="curtain-cone2"
+      position="-1.202 2.8 1.6"
+      rotation="0 0 180"
+      radius-bottom="0.3"
+      src="./Assets/Textures/Shader1.jpg"
+      height="3"
+      foo
+      animation="property: position; to: -1.202 2.8 0.85; dur: 3400; startEvents: startAnimation"
+      animation__2="property: theta-length; from: 360; to: 0; dur: 2500; startEvents: startAnimation"
+      animation__3="property: position; to: -1.202 2.8 1.6; dur: 3400; startEvents: endAnimation"
+      animation__4="property: theta-length; to: 360; dur: 1000; startEvents: endAnimation"
+  ></a-cone>
+  <a-plane
+    id="curtain-plane2"
+    position="-1.202 3 0.65"
+    rotation="0 90 0"
+    width="0.7"
+    height="6"
+    opacity="0"
+    src="./Assets/Textures/Shader1.jpg"
+    foo
+    animation="property: opacity; to: 1; dur: 2500; startEvents: startAnimation"
+    animation__2="property: opacity; to: 0; dur: 3400; startEvents: endAnimation"
+  ></a-plane>
+  <a-cone
+      id="curtain-cone3"
+      position="-1.202 0 0.4"
+      radius-bottom="0.3"
+      src="./Assets/Textures/Shader1.jpg"
+      height="3"
+      foo
+      animation="property: position; to: -1.202 0 0.85; dur: 3400; startEvents: startAnimation"
+      animation__2="property: theta-length; from: 360; to: 0; dur: 2500; startEvents: startAnimation"
+      animation__3="property: position; to: -1.202 0 0.4; dur: 3400; startEvents: endAnimation"
+      animation__4="property: theta-length; to: 360; dur: 1000; startEvents: endAnimation"
+      
+  ></a-cone>
+  <a-cone
+      id="curtain-cone4"
+      position="-1.202 2.8 0.4"
+      rotation="0 0 180"
+      radius-bottom="0.3"
+      src="./Assets/Textures/Shader1.jpg"
+      height="3"
+      foo
+      animation="property: position; to: -1.202 2.8 0.85; dur: 3400; startEvents: startAnimation"
+      animation__2="property: theta-length; from: 360; to: 0; dur: 2500; startEvents: startAnimation"
+      animation__3="property: position; to: -1.202 2.8 0.4; dur: 3400; startEvents: endAnimation"
+      animation__4="property: theta-length; to: 360; dur: 1000; startEvents: endAnimation"
+  ></a-cone>
+
+
+      <a-obj-model src="#footer-obj"></a-obj-model>
+      <a-sphere id="button" position="-1 1 0.15" scale="0.1 0.1 0.1" color="#FFF"></a-sphere>
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <a-entity id="light" light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+    </a-scene>
+
+    <div id="objects" style="display: none;">
+        <button class="card" id="chair" onclick="chair()"></button>
+        <button class="card" id="sofa" onclick="sofa()"></button>
+        <button class="card" id="table" onclick="table()"></button>
+        <button class="card" id="sofa1" onclick="sofa1()"></button>
+        <button class="card" id="photo" onclick="photo()"></button>
+    </div>
+
+    <div id="objectmenu" style="display: none;">
+        <button class="card" id="color" onclick="color()"></button>
+        <button class="card" id="rotation" onclick="rotation()"></button>
+        <button class="card" id="scaling" onclick="scaling()"></button>
+        <button class="card" id="position" onclick="position()"></button>
+        <button class="card" id="movefree" onclick="moveFree()"></button>
+        <button class="card" id="remove" onclick="remove()"></button>
+    </div>
+    
+    <div id="rotating" style="display: none;">
+      <p>X: <span id="demo1"></span></p>
+      <button onclick="change_rotation('x','+')">+</button>
+      <button onclick="change_rotation('x','-')">-</button>
+
+      <p>Y: <span id="demo2"></span></p>
+      <button onclick="change_rotation('y','-')">+</button> 
+      <button onclick="change_rotation('y','+')">-</button>
+    
+      <p>Z: <span id="demo3"></span></p>
+      <button onclick="change_rotation('z','+')">+</button>
+      <button onclick="change_rotation('z','-')">-</button>  
+    </div>
+
+    <div id="scaling_options" style="display: none;">
+      <p>Scale: <span id="demo1"></span></p>
+      <button onclick="change_scale('+')">+</button>
+      <button onclick="change_scale('-')">-</button>
+    </div>
+
+    <div id="moves" style="display: none;">
+        <button class="card" id="posx" onclick="rots('x')"></button>
+        <button class="card" id="posy" onclick="rots('y')"></button>
+        <button class="card" id="posz" onclick="rots('z')"></button>
+        <button class="card" id="moves_on" onclick="movesOn()"></button>
+    </div>
+
+    <div id="moving" style="display: none;">
+      <p>X: <span id="demo1"></span></p>
+      <button onclick="change_position('x','+')">+</button>
+      <button onclick="change_position('x','-')">-</button>
+
+      <p>Y: <span id="demo2"></span></p>
+      <button onclick="change_position('y','-')">+</button> 
+      <button onclick="change_position('y','+')">-</button>
+    
+      <p>Z: <span id="demo3"></span></p>
+      <button onclick="change_position('z','+')">+</button>
+      <button onclick="change_position('z','-')">-</button>  
+    </div>
+
+    <div id="colors" style="display: none;">
+        <button class="card" id="objmtl" onclick="objmtl()"></button>
+        <button class="card" id="green" onclick="green()"></button>
+        <button class="card" id="red" onclick="red()"></button>
+        <button class="card" id="brown" onclick="brown()"></button>
+    </div>
+
+    <div class="circleWrapper">
+        <div class="circle" id="collapse1" style="animation-delay: 0s"></div>
+        <div class="circle" id="collapse2" style="animation-delay: 1s"></div>
+        <div class="circle" id="collapse3" style="animation-delay: 2s"></div>
+        <div class="circle" onmouseover="mouse(this)" id="collapse" data-toggle="collapse" data-target="#collapseOne" style="animation-delay: 3s"></div>
+        
+        <div id="collapseOne" class="collapse" >
+            <h3 style="color: deepskyblue; opacity:0.6">Teleportation</h3>
+            <label class="switch">
+                <input type="checkbox" class="myCheck" checked id="toggle">
+                <span class="slider round"></span>
+            </label>
+            </div>
+    </div>
+
+  </body>
+</html>
